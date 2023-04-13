@@ -197,7 +197,7 @@ for user in users:
     else:  # Unleaded fuel types
         price_to_use = pctl_price
 
-    price_to_use_moved = price_to_use / 10  # Move decimal three places to the left
+    price_to_use_moved = price_to_use / 10  # Move decimal three places to the left to display price in cents/Litre
     notification_msg = f"{fuel_name} {price_to_use_moved:.1f} | {adelaide_buying_tip}"
     print(f"User: {user['name']}, Notification Message: {notification_msg}")
 
