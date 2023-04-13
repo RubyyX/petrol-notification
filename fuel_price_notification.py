@@ -7,6 +7,15 @@ import os
 
 load_dotenv()
 
+import requests
+from bs4 import BeautifulSoup
+import openai
+
+import requests
+import json
+import numpy as np
+from statistics import mean
+
 desired_day = "Saturday"
 desired_day_2 = "Wednesday"
 
@@ -25,9 +34,6 @@ if current_day != desired_day and current_day != desired_day_2:
     print("Current Time is Invalid, Terminating Program...")
     sys.exit()
 
-import requests
-from bs4 import BeautifulSoup
-import openai
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -74,10 +80,6 @@ Should I buy or not? It is critical that you only respond with one of two option
 buying_decision = ask_gpt3(system_content_1, user_content_1, 10, 1, stop=None, temperature=0).strip(".")
 print("GPT Decision: " + buying_decision)
 
-import requests
-import json
-import numpy as np
-from statistics import mean
 
 def remove_outliers(prices):
     sorted_prices = sorted(prices)
@@ -140,34 +142,9 @@ def get_fuel_name(fuel_id):
     }
     return fuel_id_name_map.get(fuel_id, "Unknown")
 
-users = [
-    {
-        "name": "Ethan",
-        "user_key": "u39w7x6rumuncui32usxk93nmfss43",
-        "preferred_fuel_id": 8  # U98
-    },
-    {
-        "name": "Keeley",
-        "user_key": "urwdreq9cxn372v8gv5xeh2mozf9n7",
-        "preferred_fuel_id": 2  # U91
-    },
-    {
-        "name": "Connor",
-        "user_key": "um4gi4nap93rg9jgxjkysfgyi2gdf5",
-        "preferred_fuel_id": 2  # U91
-    },
-    {
-        "name": "Tim",
-        "user_key": "u8ujknymhjaei7dthsw2wc141m16zi",
-        "preferred_fuel_id": 3  # Diesel
-    },
-    {
-        "name": "Stasio",
-        "user_key": "uie55xysyz3xbyx6n39ppcogrmqc81",
-        "preferred_fuel_id": 8  # U98
-    }
-
-]
+# Load user data from hidden file
+user_data_json = os.getenv("USER_DATA")
+users = json.loads(user_data_json)
 
 pushover_app_token = os.getenv("PUSHOVER_APP_TOKEN")
 
