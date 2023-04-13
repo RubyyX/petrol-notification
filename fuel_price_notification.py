@@ -29,7 +29,7 @@ import requests
 from bs4 import BeautifulSoup
 import openai
 
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 url = "https://www.accc.gov.au/consumers/petrol-and-fuel/petrol-price-cycles-in-major-cities"
 response = requests.get(url)
