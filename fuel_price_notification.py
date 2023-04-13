@@ -2,6 +2,11 @@ from datetime import datetime
 import pytz
 import sys
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 desired_day = "Saturday"
 desired_day_2 = "Wednesday"
 
