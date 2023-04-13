@@ -99,9 +99,10 @@ def calculate_statistics(prices, percentile):
 def get_prices_by_id(fuel_id):
     url = "https://fppdirectapi-prod.safuelpricinginformation.com.au/Price/GetSitesPrices?countryId=21&geoRegionLevel=2&geoRegionId=189"
     headers = {
-        "Authorization": "FPDAPI SubscriberToken=52c12b44-b208-4b74-8109-70a3c2c3aaef",
+        "Authorization": f"FPDAPI SubscriberToken={os.getenv('FPDAPI_SUBSCRIBER_TOKEN')}",
         "Content-type": "application/json"
     }
+
     response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
