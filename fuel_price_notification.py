@@ -169,7 +169,7 @@ users = [
 
 ]
 
-pushover_app_token = "a5bwbgc248vgcpp7bcuu99jz43v4f7"
+pushover_app_token = os.getenv("PUSHOVER_APP_TOKEN")
 
 # Replace the send_push_notification function with the following:
 def send_push_notification(user_key, message, user_name):
